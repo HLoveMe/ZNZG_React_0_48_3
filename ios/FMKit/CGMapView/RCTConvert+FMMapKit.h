@@ -8,7 +8,15 @@
 
 #import <React/RCTConvert.h>
 #import "FMKMap.h"
+#import "GHModelNode.h"
 @interface RCTConvert (FMMapKit)
 +(FMKMapPoint)FMKMapPoint:(id)json;
 +(FMKGeoCoord)FMKGeoCoord:(id)json;
++(FMKMapScaleRange)FMKMapScaleRange:(id)json;
++(NSDictionary *)FMKMapPointDictionary:(FMKMapPoint)point;
++(NSDictionary *)FMKGeoCoordDictionary:(FMKGeoCoord)coord;
+
+//
+
++(GHModelNode*)GHModelNode:(id)json;
 @end

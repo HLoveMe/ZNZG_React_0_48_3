@@ -42,6 +42,8 @@
 		DBAB94B71FC7FA7400577528 /* GHMapViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB94B21FC7FA7400577528 /* GHMapViewManager.m */; };
 		DBAB94B81FC7FA7400577528 /* RCTConvert+FMMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB94B41FC7FA7400577528 /* RCTConvert+FMMapKit.m */; };
 		DBAB94B91FC7FA7400577528 /* GHMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB94B51FC7FA7400577528 /* GHMapView.m */; };
+		DBAB95001FC95A8A00577528 /* GHMapNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB94FF1FC95A8A00577528 /* GHMapNodeManager.m */; };
+		DBAB95221FC95B9300577528 /* GHModelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB95211FC95B9300577528 /* GHModelNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +372,10 @@
 		DBAB94B41FC7FA7400577528 /* RCTConvert+FMMapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+FMMapKit.m"; sourceTree = "<group>"; };
 		DBAB94B51FC7FA7400577528 /* GHMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHMapView.m; sourceTree = "<group>"; };
 		DBAB94B61FC7FA7400577528 /* GHMapViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHMapViewManager.h; sourceTree = "<group>"; };
+		DBAB94FE1FC95A8A00577528 /* GHMapNodeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHMapNodeManager.h; sourceTree = "<group>"; };
+		DBAB94FF1FC95A8A00577528 /* GHMapNodeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHMapNodeManager.m; sourceTree = "<group>"; };
+		DBAB95201FC95B9300577528 /* GHModelNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHModelNode.h; sourceTree = "<group>"; };
+		DBAB95211FC95B9300577528 /* GHModelNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHModelNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -718,6 +724,10 @@
 				DBAB94B41FC7FA7400577528 /* RCTConvert+FMMapKit.m */,
 				DBAB94B61FC7FA7400577528 /* GHMapViewManager.h */,
 				DBAB94B21FC7FA7400577528 /* GHMapViewManager.m */,
+				DBAB95201FC95B9300577528 /* GHModelNode.h */,
+				DBAB95211FC95B9300577528 /* GHModelNode.m */,
+				DBAB94FE1FC95A8A00577528 /* GHMapNodeManager.h */,
+				DBAB94FF1FC95A8A00577528 /* GHMapNodeManager.m */,
 			);
 			path = CGMapView;
 			sourceTree = "<group>";
@@ -1195,8 +1205,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBAB94B91FC7FA7400577528 /* GHMapView.m in Sources */,
+				DBAB95221FC95B9300577528 /* GHModelNode.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				DBAB95001FC95A8A00577528 /* GHMapNodeManager.m in Sources */,
 				DBAB94B81FC7FA7400577528 /* RCTConvert+FMMapKit.m in Sources */,
 				DBAB94B71FC7FA7400577528 /* GHMapViewManager.m in Sources */,
 			);

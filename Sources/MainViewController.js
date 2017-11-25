@@ -7,6 +7,8 @@ import PXHandle from "./src/Tools/PXHandle"
 import { bkColor } from  "./src/Tools/commandColors"
 import Button from 'apsl-react-native-button'
 import  {FMapView}  from "./src/Tools/Views/MapView"
+import Search from 'react-native-search-box';
+
 
 const  MianStyle = StyleSheet.create({
    Main:{
@@ -71,6 +73,25 @@ const  MianStyle = StyleSheet.create({
         backgroundColor: "white",
         lineHeight: PXHandle.PXWidth(98),
         fontSize: 20,
+    },
+    User:{
+        position:"absolute",
+        left:10,
+        bottom:0,
+        width:60,
+        height:60,
+        borderWidth:0,
+        zIndex:10
+        // backgroundColor:"red",
+    },
+    Search:{
+        position:"absolute",
+        zIndex:10,
+        top:30,
+        left:40,
+        right:40,
+        // height:44,
+        backgroundColor:"red",
     }
 });
 function MainFuncName() {}
@@ -84,6 +105,7 @@ MainFuncName.Panorama = 6;
 MainFuncName.Ecommendation = 7;
 MainFuncName.HallMeet = 8;
 MainFuncName.Seacher = 9;
+MainFuncName.User = 9;
 
 export default class MainViewController extends Component{
     constructor(ops){
@@ -92,12 +114,22 @@ export default class MainViewController extends Component{
             enable3D:false,
             showCompass:false,
         }
+        /**
+         * 选中的节点
+         * */
+        this.mapNode = null;
+
     }
     OperationClick = (type)=>{
         console.log(type);
         switch (type){
             case MainFuncName.MapType:{
+                //地图状态
                 this.setState({enable3D:!this.state.enable3D});
+                break
+            }
+            case MainFuncName.User:{
+                console.log(111)
                 break
             }
 
@@ -105,19 +137,42 @@ export default class MainViewController extends Component{
     };
     componentDidMount(){
         //显示地图
-    }
 
+    }
+    maploadFinish=()=>{
+        console.log(this.refs.FMapView.getMapDisplayIds());
+        this.refs.FMapView.startLocation()
+    };
+    onNodeClick = (e)=>{
+      this.refs.FMapView.selectNode(e,this.mapNode);
+        this.mapNode = e;
+    };
     render(){
         return (
             <View style={ MianStyle.Main }>
-                <FMapView style={ MianStyle.Map } mapLoadFinish={()=>{
-
-                }}
+                <FMapView ref="FMapView" style={ MianStyle.Map } mapLoadFinish={ this.maploadFinish }
                           showCompass={this.state.showCompass}
                           enable3D={this.state.enable3D}
+                          onNodeClick = {
+                              this.onNodeClick
+                          }
                 >
-
                 </FMapView>
+
+                <Button style={ MianStyle.User } onPress={()=>this.OperationClick(MainFuncName.User)}>
+                    <Image style={ MianStyle.FuncIcon}
+                        source={ require("../images/home/Index_Person_on.png") }
+                    >
+
+                    </Image>
+                </Button>
+
+                <View style = {MianStyle.Search}>
+                    <Search backgroundColor="blue">
+
+                    </Search>
+                </View>
+
                 <View style={ MianStyle.LeftFuncs }>
                     {/** 左侧功能 */}
                     <Button style={ [MianStyle.LeftFunc,MianStyle.FuncTitle] } textStyle={ {fontSize:20 }} onPress={()=>this.OperationClick(MainFuncName.MapType)}>
