@@ -21,7 +21,8 @@ static NSString *MapID =  @"sapce-2017";
 static NSString *ThemeID = @"4008";
 static NSString *FMMAPKEY = @"02feb8cee9aef3fc2cf082292539cbfc";
 
-@interface GHMapViewManager()<FMKMapViewDelegate>
+@interface GHMapViewManager()<FMKMapViewDelegate,FMKSearchAnalyserDelegate>
+@property (nonatomic, copy) RCTResponseSenderBlock seachBlock;
 @end
 @implementation GHMapViewManager
 //往js导入模块<MapView>
@@ -125,6 +126,26 @@ RCT_EXPORT_METHOD(startLocation:(nonnull NSNumber*)reactTag){
     }
   }];
 }
+//搜索
+RCT_EXPORT_METHOD(Search:(nonnull NSNumber *)reactTag key:(NSString *)word back:(RCTResponseSenderBlock)handle){
+  if(handle == nil){return;}
+  self.seachBlock = handle;
+  [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *,UIView *> *viewRegistry) {
+    id view = viewRegistry[reactTag];
+    if([view isKindOfClass:[GHMapView class]]){
+      GHMapView *mapV = (GHMapView *)view;
+      FMKModelSearchRequest *request =[[FMKModelSearchRequest alloc] init];
+      request.groupIDs = @[[mapV getFocusGroupID]];
+      request.keywords = word;
+      FMKSearchAnalyser *search = [[FMKSearchAnalyser alloc]initWithDataPath:[mapV.map dataPath]];
+      
+      search.delegate = self;
+      [search executeFMKSearchRequestByKeyWords:request];
+    }else{
+      RCTLogError(@"GHMapViewManager %@ Search Error",reactTag);
+    }
+  }];
+}
 //更新我的位置
 RCT_EXPORT_METHOD(updateLocation:(nonnull NSNumber*)reactTag location:(FMKGeoCoord)loca angle:(CGFloat)angle){
   [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *,UIView *> *viewRegistry) {
@@ -137,6 +158,21 @@ RCT_EXPORT_METHOD(updateLocation:(nonnull NSNumber*)reactTag location:(FMKGeoCoo
       [maker locateWithGeoCoord:loca];
     }else{
       RCTLogError(@"GHMapViewManager %@ updateLocation Error",reactTag);
+    }
+  }];
+}
+//聚焦Node位置
+RCT_EXPORT_METHOD(focusNode:(nonnull NSNumber *)reactTag FID:(NSString*)fid){
+  [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *,UIView *> *viewRegistry) {
+    id view = viewRegistry[reactTag];
+    if([view isKindOfClass:[GHMapView class]]){
+      GHMapView *mapV = (GHMapView *)view;
+      FMKModelLayer *layer = [mapV.map getModelLayerByGroupID:[mapV getFocusGroupID]];
+      FMKModel *modal = [layer queryModelByFID:fid];
+      FMKGeoCoord ceter = [modal getModelCenterByMapPath:[mapV.map dataPath]];
+      [mapV moveToViewCenterFromMapPoint:ceter.mapPoint animated:false];
+    }else{
+      RCTLogError(@"GHMapViewManager %@ focusNode Error",reactTag);
     }
   }];
 }
@@ -193,5 +229,16 @@ RCT_EXPORT_VIEW_PROPERTY(onMapNodeClick, RCTBubblingEventBlock);
     return YES;
   }
   return NO;
+}
+#pragma -mark 模型查询
+- (void)onModelSearchDone:(FMKModelSearchRequest *)request result:(NSArray *)resultArray distances:(NSArray *)distances{
+  NSArray* res = resultArray.count >=3 ? [resultArray subarrayWithRange:NSMakeRange(0, 3)] : resultArray;
+  NSMutableArray *_res = [NSMutableArray array];
+  for (FMKModelSearchResult *one in res){
+    [_res addObject:@{@"FID":one.FID,@"name":one.name}];
+  }
+  if(self.seachBlock){
+    self.seachBlock(@[_res]);
+  }
 }
 @end

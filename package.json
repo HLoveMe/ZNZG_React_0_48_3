@@ -10,7 +10,11 @@
     "apsl-react-native-button": "^3.1.0",
     "react": "16.0.0-alpha.12",
     "react-native": "0.48.3",
-    "react-native-search-box": "0.0.13"
+    "react-native-fs": "^2.8.5",
+    "react-native-media-player": "^0.3.5",
+    "react-native-search-box": "0.0.13",
+    "react-native-sound": "^0.10.4",
+    "react-navigation": "^1.0.0-beta.21"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",

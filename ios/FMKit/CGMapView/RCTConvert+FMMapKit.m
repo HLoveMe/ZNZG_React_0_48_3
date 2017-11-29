@@ -31,6 +31,9 @@ RCT_CONVERTER(int, FMKMapGroupID, intValue);
   result[@"groupID"] = @(coord.groupID);
   return result;
 }
++(NSDictionary *)FMKModel:(FMKModel*)model{
+  return @{@"groupID":model.groupID,@"title":model.title,@"englishTitle":model.englishTitle,@"FID":model.FID,@"type":model.type,@"selected":@(model.selected)};
+}
 +(FMKMapScaleRange)FMKMapScaleRange:(id)json{
   json = [self NSDictionary:json];
   return FMKMapScaleRangeMake([RCTConvert float:json[@"min"]], [RCTConvert float:json[@"max"]]);

@@ -10,6 +10,7 @@
 #import <React/RCTUIManager.h>
 #import "GHMapView.h"
 #import "GHModelNode.h"
+#import "RCTConvert+FMMapKit.h"
 @interface GHMapNodeManager()
 @end
 @implementation GHMapNodeManager
@@ -25,6 +26,22 @@ RCT_EXPORT_METHOD(selectNode:(nonnull NSNumber *)reactTag current:(GHModelNode*)
       _pre.selected = false;
     }else{
       RCTLogError(@"GHMapNodeManager %@ selectNode Error",reactTag);
+    }
+  }];
+}
+
+RCT_EXPORT_METHOD(getNodeCenter:(nonnull NSNumber *)reactTag node:(NSString *)FID handle:(RCTResponseSenderBlock)handle){
+  if(handle==nil){return;}
+  [self.bridge.uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *,UIView *> *viewRegistry) {
+    UIView *view = viewRegistry[reactTag];
+    if([view isKindOfClass:[GHMapView class]]){
+      GHMapView *mapV  = (GHMapView *)view;
+      FMKModelLayer *layer = [mapV.map getModelLayerByGroupID:[mapV getFocusGroupID]];
+      FMKModel *modal = [layer queryModelByFID:FID];
+      FMKGeoCoord ceter = [modal getModelCenterByMapPath:[mapV.map dataPath]];
+      handle(@[[RCTConvert FMKGeoCoordDictionary:ceter]]);
+    }else{
+      RCTLogError(@"GHMapNodeManager %@ getNodeCenter Error",reactTag);
     }
   }];
 }

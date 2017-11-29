@@ -21,4 +21,5 @@
                            ID:(NSString *)mapID
                      delegate:(id<FMKMapViewDelegate>)target
                   Bridge:(RCTBridge *)bridge;
+
 @end

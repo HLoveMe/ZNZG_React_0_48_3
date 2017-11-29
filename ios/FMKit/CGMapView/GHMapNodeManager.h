@@ -9,5 +9,4 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTViewManager.h>
 @interface GHMapNodeManager : RCTViewManager
-
 @end

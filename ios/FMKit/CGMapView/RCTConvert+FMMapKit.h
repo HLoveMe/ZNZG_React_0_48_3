@@ -15,7 +15,7 @@
 +(FMKMapScaleRange)FMKMapScaleRange:(id)json;
 +(NSDictionary *)FMKMapPointDictionary:(FMKMapPoint)point;
 +(NSDictionary *)FMKGeoCoordDictionary:(FMKGeoCoord)coord;
-
++(NSDictionary *)FMKModel:(FMKModel*)model;
 //
 
 +(GHModelNode*)GHModelNode:(id)json;

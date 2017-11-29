@@ -7,4 +7,4 @@
 export const fontColor = "#666666";
 
 //按钮背景颜色
-export const bkColor = "#009cff";
+export const buttonColor = "#4c8dfc";

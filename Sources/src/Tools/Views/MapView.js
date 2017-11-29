@@ -1,8 +1,8 @@
 /**
  * Created by zhuzihao on 2017/11/23.
  */
-import React, { Component ,PropTypes} from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { processColor,EdgeInsetsPropType} from 'react-native';
 import { requireNativeComponent ,NativeModules,findNodeHandle} from 'react-native';
@@ -23,9 +23,7 @@ export  class FMapView extends Component{
         // }
 
     }
-    _handle=()=>{
-        return findNodeHandle(this.refs.GHMapView);
-    };
+
     getMapCener=()=>{
         if(this.state._loadFinish){return this.state.mapCenter;}
     };
@@ -42,7 +40,7 @@ export  class FMapView extends Component{
         });
     };
     /**设置地图当前ID*/
-    configCurrentMapID(id){
+    configCurrentMapID=(id)=>{
         GHMapViewManager.setCurrentID(this._handle(),id);
     }
     //设置地图 Node选中状态
@@ -54,9 +52,20 @@ export  class FMapView extends Component{
       GHMapNodeManager.selectNode(this._handle(),seletNode,cancalNode);
     };
     /**开始显示自己位置 开始定位*/
-    startLocation(){
+    startLocation = ()=>{
         GHMapViewManager.startLocation(this._handle());
     }
+    /**
+     * key 搜索关键字
+     * handle 结果回调(results){}
+     * */
+    seachModelsByKey = (key,handle)=>{
+        GHMapViewManager.Search(this._handle(),key,handle);
+    };
+    //聚焦
+    focusNode=(FID)=>{
+        GHMapViewManager.focusNode(this._handle(),FID);
+    };
     _mapLoadComplate=()=>{
         // GHMapViewManager.getMapCenter(this._handle(),(center)=>{
         //     this.mapCenter = center;
@@ -71,7 +80,9 @@ export  class FMapView extends Component{
     _mapNodeSelect = (e)=>{
       //node被选择
     };
-
+    _handle=()=>{
+        return findNodeHandle(this.refs.GHMapView);
+    };
     render(){
         return (
             <GHMapView ref="GHMapView" { ...this.props }
