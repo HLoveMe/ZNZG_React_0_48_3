@@ -2,11 +2,14 @@
  * Created by zhuzihao on 2017/11/28.
  */
 
-import { StackNavigator } from "react-navigation";
-import NodeInfoView from "./NodeInfoView";
 
-export const NodeNavigator = StackNavigator({
-    nodeInfo:{screen:NodeInfoView},
+import NodeInfoView from "./NodeInfoView";
+import { Navigationer } from "../Base/Navigation"
+
+export const NodeNavigator = Navigationer({
+    nodeInfo:{ screen:NodeInfoView },
+    nodeInfoDetail:{getScreen:()=>{return require("./NodeInfoDetailView").default}},
+    nodeBespeak:{getScreen:()=>{return require("./NodeBespeakView").default}},
 },{
     initialRouteName:"nodeInfo",
     headerMode:"none",

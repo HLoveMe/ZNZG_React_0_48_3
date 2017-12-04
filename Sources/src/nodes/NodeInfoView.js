@@ -24,7 +24,9 @@ const  NodeInfoStyle = StyleSheet.create({
         overflow:"hidden",
         width:PXhandle.ScreenWidth - 20,
         borderRadius:10,
-        position:"absolute"
+        position:"absolute",
+        bottom:10,
+        left:10
     },
     title:{
         fontSize:30,
@@ -70,33 +72,34 @@ const  NodeInfoStyle = StyleSheet.create({
 export  default class NodeInfoView extends Component{
     constructor(ops){
         super(ops);
-
         this.state = {
-            info:new Animated.ValueXY({x:10,y:PXhandle.Screenheight}),
             node:this.props.screenProps.currentNode,
             disabled:false,
         }
-        console.log(this.state.node)
     }
     componentDidMount(){
-        Animated.timing(this.state.info,{
-            toValue:{x:10,y:PXhandle.Screenheight - height - 10} ,
-            duration:750,
-            // useNativeDriver:true,
-            delay:100
-        }).start()
+
     }
     goDetail = ()=>{
-        console.log("dtail")
+        this.props.navigation.navigate("nodeInfoDetail",{node:this.state.node});
+        //测试NavigationActions
+        return;
+        /**
+         *  得到同样的效果  并且直接到预约界面
+         *
+           this.props.navigation.dispatch(NavigationActions.reset({
+            actions: [
+                NavigationActions.navigate({ routeName: 'nodeInfo'}),
+                NavigationActions.navigate({ routeName: 'nodeInfoDetail',params:{node:this.state.node},}),
+                NavigationActions.navigate({ routeName: 'nodeBespeak',params:{node:this.state.node},}),
+            ],
+            index:2
+            }))
+         *
+         * */
     };
     _dimiss = (index)=>{
-        Animated.timing(this.state.info,{
-            toValue:{x:10,y:PXhandle.Screenheight},
-            duration:750,
-        }).start();
-        setTimeout(()=>{
-            this.props.screenProps.dismiss(index);
-        },750)
+        this.props.screenProps.dismiss(index);
     };
     render(){
         return (
@@ -112,7 +115,7 @@ export  default class NodeInfoView extends Component{
                                   activeOpacity={1}
                 >
                 </TouchableOpacity>
-                <Animated.View style = { [NodeInfoStyle.Info,this.state.info.getLayout()] }>
+                <Animated.View style = { [NodeInfoStyle.Info] }>
                     <Text style={NodeInfoStyle.title}>{this.state.node.title}</Text>
                     <Text style={NodeInfoStyle.summary}
                           numberOfLines = {3}

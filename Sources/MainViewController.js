@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View ,Text,Image,requireNativeComponent,Keyboard,Modal,NativeModules} from 'react-native';
 import PXHandle from "./src/Tools/PXHandle"
-import { bkColor } from  "./src/Tools/commandColors"
+import { buttonColor } from  "./src/Tools/commandColors"
 import Button from 'apsl-react-native-button'
 import  {FMapView}  from "./src/Tools/Views/MapView"
 import Search from 'react-native-search-box';
@@ -13,11 +13,10 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/delay';
 import { SettingNavigator } from "./src/settings/SettingConfig"
-import { NodeNavigator } from "./src/nodes/NodeInfoConfig"
+import { NodeNavigator} from "./src/nodes/NodeInfoConfig"
 import { NetWorkManager } from "./src/Base/netWork/NetWorkManager"
 import { HttpMethod } from "./src/Base/netWork/Http"
 var ReactNative = require('react-native');
-
 import { AutoAuthorization } from "./src/Base/znzg_network/ZNZGInterceptor";
 import { InterceptorManager } from "./src/Base/netWork/Interceptor"
 import { ResponseResultActionManager } from "./src/Base/netWork/ResponseResultAction"
@@ -115,7 +114,7 @@ const  MainStyle = StyleSheet.create({
         position:"absolute",
         height:44,
         width:"100%",
-        backgroundColor:"red",
+        backgroundColor:buttonColor,
         zIndex:10,
         marginTop:80,
     }
@@ -192,8 +191,9 @@ export default class MainViewController extends Component{
     };
     //显示提示信息
     showMessage = (modalMessage)=>{
+        clearTimeout(this.msg_timeout);
         this.setState({modalMessage,modalMessageShow:true},()=>{
-            setTimeout(()=>{
+            this.msg_timeout = setTimeout(()=>{
                 this.setState({modalMessageShow:false})
             },750)
         })
@@ -391,7 +391,7 @@ export default class MainViewController extends Component{
                 <View style={ MainStyle.RightFuncs }>
                     {/* 楼层 */}
                     <View style={ MainStyle.RightOneFuncs }>
-                        <Button style={ [MainStyle.RightOneFunc,{borderWidth:1,borderColor:bkColor}] } onPress={()=>this.OperationClick(MainFuncName.Floors)}>
+                        <Button style={ [MainStyle.RightOneFunc,{borderWidth:1,borderColor:buttonColor}] } onPress={()=>this.OperationClick(MainFuncName.Floors)}>
                             <Text style={ MainStyle.FuncTitleFloor }>
                                 1
                             </Text>

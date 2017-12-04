@@ -29,7 +29,7 @@ static NSString *FMMAPKEY = @"02feb8cee9aef3fc2cf082292539cbfc";
 RCT_EXPORT_MODULE(GHMapViewManager);
 //导出视图
 -(UIView *)view{
-  return [[GHMapView alloc] initWithFrame:[UIScreen mainScreen].bounds ID:MapID delegate:self Bridge:self.bridge];;
+  return [[GHMapView alloc] initWithFrame:[UIScreen mainScreen].bounds ID:MapID delegate:self Bridge:self.bridge];
 }
 RCT_EXPORT_VIEW_PROPERTY(showCompass, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(enable3D, BOOL);

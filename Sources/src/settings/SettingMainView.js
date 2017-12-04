@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, View ,Text,Image,SectionList,TouchableHighlight } from 'react-native';
-import BaseContentView from "../Base/BaseContentView"
+import BaseContentView,{deviateView} from "../Base/BaseContentView"
 import PXHandle from "../Tools/PXHandle"
 const SettingStyle = StyleSheet.create({
     content:{
@@ -33,13 +33,28 @@ const SettingStyle = StyleSheet.create({
         height:1,
         backgroundColor:"#f5f5f5",
         width:"90%",
+    },
+    UserIcon:{
+        position:"absolute",
+        zIndex:11,
+        right:20,
+        top:10,
+        borderRadius:30,
+        overflow:"hidden"
+    },
+    UserIconImage:{
+        width:60,
+        height:60,
     }
 
 });
 export default class SettingMainView extends Component{
     constructor(ops){
         super(ops);
-        this.state= {setting:[{rows:[{title:"预约"}, {title:"消息"}, { title:"资料"}],footer:true},{rows:[{title:"足迹"}],footer:true},{rows:[{title:"设置"},{ title:"关于"}],footer:false}]};
+        this.state= {
+            setting:[{rows:[{title:"预约"}, {title:"消息"}, { title:"资料"}],footer:true},{rows:[{title:"足迹"}],footer:true},{rows:[{title:"设置"},{ title:"关于"}],footer:false}],
+            icon:require("../../../images/my_user_icon.png")
+        };
     }
     componentDidMount(){
 
@@ -97,6 +112,18 @@ export default class SettingMainView extends Component{
             <BaseContentView title={"我的"}
                              dismiss={ this.props.screenProps.dismiss }
             >
+                <TouchableHighlight key={ deviateView("Icon") }
+                                    style= { SettingStyle.UserIcon}
+                                    onPress = {()=>{
+                                            this.props.navigation.navigate("userInfo")
+                                        }
+                                    }
+                >
+                    <Image style= { SettingStyle.UserIconImage }
+                           source={ this.state.icon }
+                    >
+                    </Image>
+                </TouchableHighlight>
                 <View style={SettingStyle.content}>
                     <SectionList sections={
                                     this._renderSection()

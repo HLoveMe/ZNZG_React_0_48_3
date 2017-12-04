@@ -29,6 +29,7 @@ const BaseStyle = StyleSheet.create({
     BaseContent:{
         flex:1,
         marginBottom:60,
+        overflow:"scroll",
     },
     Title:{
         height:80,
@@ -39,20 +40,48 @@ const BaseStyle = StyleSheet.create({
     }
 
 });
+/**
+ *  默认情况下  BaseContentView 子控件都会约束在 id="Deviate"的组件中
+ *  如果  BaseContentView 的子组件key 值 key = deviateView("...") 就会脱离 id="Deviate"的组件
+ *        而存在 id="Root" 的组件中的起始位置
+ *
+ *  position:"absolute",
+ *  zIndex=11
+ *
+ * */
+export const deviateView = (key)=>{
+  return "_Deviate_" + `${key}`
+};
 
 export default class BaseContentView extends Component{
-    componentDidMount(){
-        console.log(this.props.navigate)
-    }
-    render() {
 
+    render() {
         return (
-            <View style={ [BaseStyle.Container,this.props.baseStyle] }>
+            <View style={ [BaseStyle.Container,this.props.baseStyle] } id="Root">
+                {
+                    React.Children.map(this.props.children,(child)=>{
+                        if(child.key == null){return null;}
+                        if(child.key.indexOf("Deviate_") >= 0){
+                            return child;
+                        }else{
+                            return null;
+                        }
+                    })
+                }
                 <Text style={ BaseStyle.Title }>
                     {this.props.title}
                 </Text>
-                <View style={ BaseStyle.BaseContent }>
-                    {this.props.children}
+                <View style={ BaseStyle.BaseContent } id="Deviate">
+                    {
+                        React.Children.map(this.props.children,(child)=>{
+                            if(child.key == null){return child;}
+                            if(child.key.indexOf("Deviate_") < 0){
+                                return child;
+                            }else{
+                                return null;
+                            }
+                        })
+                    }
                 </View>
                 <TouchableHighlight style={ [BaseStyle.BackIconC,this.props.backStyle] }
                                     underlayColor={"white"}

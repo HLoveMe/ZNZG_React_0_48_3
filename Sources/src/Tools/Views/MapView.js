@@ -12,7 +12,7 @@ export  class FMapView extends Component{
     constructor(props) {
         super(props);
         this.state = {_loadFinish:false};
-
+        console.log(this.props)
     }
     //GHMapViewManager.nodeClick
     componentDidMount(){
@@ -100,6 +100,7 @@ export  class FMapView extends Component{
                            this._mapNodeSelect(a.nativeEvent);
                            this.props.onNodeClick  && this.props.onNodeClick(a.nativeEvent);
                        }}
+
             >
             </GHMapView>
         )
