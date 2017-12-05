@@ -20,9 +20,10 @@ class _AutoAuthorization extends  Interceptor{
         })
     }
     intercept(option,next){
-        let header  = option.header;
-        header["Authorization"] = this.user ? (this.user.Authorization || this._Authorization) : this._Authorization;
-        option.header = header;
+        let headers  = option.headers;
+        headers["Authorization"] = this.user ? (this.user.Authorization || this._Authorization) : this._Authorization;
+        headers["Content-Type"] = "application/x-www-form-urlencoded";
+        option.headers = headers;
         return next(option);
     }
 }

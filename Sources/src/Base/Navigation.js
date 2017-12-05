@@ -20,52 +20,39 @@ class _Navigation {
     constructor(navi) {
         this.navi = navi;
         //检查 权限
-        const defaultetgetComponentForRouteName = navi.router.getComponentForRouteName;
-        navi.router.getComponentForRouteName = (name)=>{
-            if(name == ProfileName ){//需要权限?
-                let defaultV = defaultetgetComponentForRouteName(name);
-                //需要登入
-                let _UserLoginView = (ops)=>{
-                    let Login =  new defaultV(ops);
-                    return Login;
-                };
-                return  _UserLoginView;
-            }
-            return  defaultetgetComponentForRouteName(name);
-        };
+
 
         const  defaultGetStateForAction = navi.router.getStateForAction;
         navi.router.getStateForAction = (action,state)=>{
             let next = defaultGetStateForAction(action,state);
-            if(action.type == NavigationActions.BACK){
-                //判断是否为登入界面
-                //要回退的界面
+            // if(action.type == NavigationActions.BACK){
+            //     //判断是否为登入界面
+            //     //要回退的界面
+            //     let {index,routes} = next;
+            //     let pre = routes[index];
+            //     if (pre.routeName == ProfileName){
+            //         debugger
+            //         next.index = index -1;
+            //         return next;
+            //     }
+            // }else
+            if(action.type == NavigationActions.NAVIGATE){
                 let {index,routes} = next;
-                let pre = routes[index];
-                if (pre.routeName == ProfileName){
-                    debugger
-                    //为登入界面
-                    let _pre = routes[index-1];
-                    action["key"] = _pre.key;
-                    routes.pop();
-                    //再次回退
-                    return defaultGetStateForAction(action,routes);
-                }
-            }else if(action.type == NavigationActions.NAVIGATE){
-                let {index,routes} = next;
-                let View = defaultetgetComponentForRouteName(routes[index].routeName);
+                let View = this.navi.router.getComponentForRouteName(routes[index].routeName);
                 if(View.power){//需要权限
                     if(!UserManager.isLogin){
                         //还没登
                         let target = routes[index].routeName;
+                        routes[index].params = routes[index].params || {};
                         routes[index].params["login_target"] = target;
                         routes[index].routeName = ProfileName;
                         routes[index].params["router"] = next;
+                        routes[index].params["key"] = routes[index].key;
                         return next;
                     }
                 }
             }
-            console.log(next);
+
             return next;
         };
     }

@@ -15,7 +15,9 @@
     "react-native-media-player": "^0.3.5",
     "react-native-search-box": "0.0.13",
     "react-native-slider": "^0.11.0",
+    "react-native-smart-loading-spinner-overlay": "^1.0.2",
     "react-native-sound": "^0.10.4",
+    "react-native-storage": "^0.2.2",
     "react-navigation": "^1.0.0-beta.21"
   },
   "devDependencies": {

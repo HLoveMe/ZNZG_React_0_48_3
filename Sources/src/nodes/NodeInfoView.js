@@ -38,7 +38,7 @@ const  NodeInfoStyle = StyleSheet.create({
         fontSize:14,
         paddingTop:0,
         lineHeight:16,
-        height:48,
+        height:52,
     },
     tools:{
         height:PXhandle.PXHeight(140),

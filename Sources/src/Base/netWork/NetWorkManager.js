@@ -9,6 +9,9 @@ import { HttpMethod ,HttpRequestOption} from "./Http"
 import { InterceptorManager } from "./Interceptor";
 import { ResponseResultActionManager } from "./ResponseResultAction"
 
+export const URLString = (url)=>{
+  return   "http://ah.vr68.com/apiv1/" + url;
+};
 
 export class NetWorkManager {
     /**

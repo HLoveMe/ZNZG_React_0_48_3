@@ -104,8 +104,19 @@ class InterceptorEnd extends Interceptor{
         let sub = new Subject();
         if(option.method == HttpMethod.GET && option.body != null){
             delete option["body"];
-            next(option,sub);
+        }else if(option.method == HttpMethod.POST && option.body != null){
+            let  body = option.body;
+            let bodyArray = [];
+            //拼接参数
+            let keys = Object.keys(body);
+            keys.forEach(key => bodyArray.push(key + '=' + body[key]));
+            if(keys.length >= 1){
+                option["body"] = bodyArray.join("&");
+            }else{
+                delete option["body"];
+            }
         }
+        next(option,sub);
         return sub;
     }
 }

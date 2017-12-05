@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View ,Text,Image,SectionList,TouchableHighlight } from 'react-native';
 import BaseContentView,{deviateView} from "../Base/BaseContentView"
 import PXHandle from "../Tools/PXHandle"
+import { UserManager } from "../Base/User/UserManager"
 const SettingStyle = StyleSheet.create({
     content:{
 
@@ -55,9 +56,18 @@ export default class SettingMainView extends Component{
             setting:[{rows:[{title:"预约"}, {title:"消息"}, { title:"资料"}],footer:true},{rows:[{title:"足迹"}],footer:true},{rows:[{title:"设置"},{ title:"关于"}],footer:false}],
             icon:require("../../../images/my_user_icon.png")
         };
+
     }
     componentDidMount(){
-
+        UserManager.userSubject.subscribe((user)=>{
+            if(user!=null){
+                this.setState({
+                    icon:{
+                        uri:user.headimgurl
+                    }
+                })
+            }
+        })
     }
     _navigation = (group,index)=>{
         if(group == 0){

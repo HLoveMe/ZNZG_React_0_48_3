@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View ,Text,Image,requireNativeComponent,Keyboard,Modal,NativeModules} from 'react-native';
 import PXHandle from "./src/Tools/PXHandle"
+import {} from "./src/Base/dataBase"
 import { buttonColor } from  "./src/Tools/commandColors"
 import Button from 'apsl-react-native-button'
 import  {FMapView}  from "./src/Tools/Views/MapView"
@@ -22,6 +23,7 @@ import { InterceptorManager } from "./src/Base/netWork/Interceptor"
 import { ResponseResultActionManager } from "./src/Base/netWork/ResponseResultAction"
 import {ZHZGReponseResultAction,ZNZGReponseMessasgeAction,ZNZGUserPowerAction} from "./src/Base/znzg_network/ZNZGReponseResult"
 import { MusicPlayView } from "./src/Tools/Views/MusicPlayView"
+import Toast from 'react-native-root-toast';
 const  MainStyle = StyleSheet.create({
    Main:{
        flex:1,
@@ -121,18 +123,6 @@ const  MainStyle = StyleSheet.create({
 
 });
 const ModalStyle = StyleSheet.create({
-    Message:{
-        flex:1,
-        justifyContent:"center",
-        alignItems:"center",
-    },
-    MessageTextC:{
-        backgroundColor:"#f5f5f5",
-        height:80,
-        paddingHorizontal:30,
-        borderRadius:10,
-        justifyContent:"center",
-    }
 });
 function MainFuncName() {}
 MainFuncName.MapType = 0;
@@ -159,10 +149,6 @@ export default class MainViewController extends Component{
             nodeModalVisible:false,
             currentNode:null,
             /***/
-            modalMessage:"",
-            modalMessageShow:false,
-
-            /***/
             musicPlay:false
         };
         /**
@@ -187,17 +173,27 @@ export default class MainViewController extends Component{
             //错误信息展示
             this.showMessage(modalMessage);
         }));
+        //请求结果处理函数
         ResponseResultActionManager.addAction(new ZHZGReponseResultAction());
     };
     //显示提示信息
     showMessage = (modalMessage)=>{
-        clearTimeout(this.msg_timeout);
-        this.setState({modalMessage,modalMessageShow:true},()=>{
-            this.msg_timeout = setTimeout(()=>{
-                this.setState({modalMessageShow:false})
-            },750)
+        console.log(modalMessage);
+        /**
+         * 在系统的Modal 下 Toast是显示不出来的
+         * */
+        if(this.toast){
+            Toast.hide(this.toast);
+        }
+        this.toast = Toast.show("\n"+modalMessage +"\n",{
+            duration:Toast.durations.SHORT,
+            position:Toast.positions.CENTER,
+            shadow:false,
+            animation:true,
+            hideOnPress:true,
+            delay:0,
         })
-    }
+    };
     /**
      * 功能点击
      * */
@@ -429,25 +425,16 @@ export default class MainViewController extends Component{
                 <Modal  visible = { this.state.settingModalVisible }
                        animationType = { "slide" }
                         transparent = { true }
+                        key="Modal2"
                 >
                     <SettingNavigator  screenProps={{"dismiss":this._dismiss}}/>
                 </Modal>
                 <Modal  visible = { this.state.nodeModalVisible }
                         animationType = { "fade" }
                         transparent = { true }
+                        key="Modal3"
                 >
                     <NodeNavigator  screenProps={{"dismiss":this._dismiss,bkurl:this.state.bkurl,currentNode:this.state.currentNode}}/>
-                </Modal>
-                <Modal visible={ this.state.modalMessageShow }
-                       transparent = { true }
-                >
-                        <View style = { ModalStyle.Message }>
-                            <View style={ ModalStyle.MessageTextC }>
-                                <Text>
-                                    { this.state.modalMessage }
-                                </Text>
-                            </View>
-                        </View>
                 </Modal>
             </View>
         );

@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View ,Text,Image,TouchableHighlight} from 'react-native';
+import { StyleSheet, View ,Text,Image,TouchableHighlight,TouchableOpacity,Keyboard} from 'react-native';
 import PXHandle from "../Tools/PXHandle"
 const BaseStyle = StyleSheet.create({
     Container:{
@@ -57,7 +57,10 @@ export default class BaseContentView extends Component{
 
     render() {
         return (
-            <View style={ [BaseStyle.Container,this.props.baseStyle] } id="Root">
+            <TouchableOpacity style={ [BaseStyle.Container,this.props.baseStyle] } id="Root"
+                              activeOpacity = {1}
+                              onPress = {Keyboard.di}
+            >
                 {
                     React.Children.map(this.props.children,(child)=>{
                         if(child.key == null){return null;}
@@ -94,7 +97,7 @@ export default class BaseContentView extends Component{
                     </Image>
                 </TouchableHighlight>
 
-            </View>
+            </TouchableOpacity>
         )
     }
 }
