@@ -29,10 +29,15 @@ const styleSheet = StyleSheet.create({});
 export default class NodeInfoDetailView extends Component{
     constructor(ops){
         super(ops);
-        this.node = this.props.navigation.state.params.node;
+        this.state ={node:null}
+    }
+    componentDidMount(){
+        this.setState({
+            node:this.props.navigation.state.params.node
+        })
     }
     _nodeBespeak = ()=>{
-        this.props.navigation.navigate("nodeBespeak",{node:this.node})
+        this.props.navigation.navigate("nodeBespeak",{node:this.state.node})
     };
     render(){
         return (
@@ -47,7 +52,7 @@ export default class NodeInfoDetailView extends Component{
                          mediaPlaybackRequiresUserAction={ true }
                          scalesPageToFit = { true }
                          source={ {
-                             html:this.node.introduction,
+                             html:this.state.node == null ? "" : this.state.node.introduction,
                          } }
                 >
                 </WebView>
