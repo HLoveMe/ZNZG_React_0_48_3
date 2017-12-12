@@ -54,7 +54,7 @@ export default class SettingMainView extends Component{
         super(ops);
         this.state= {
             setting:[{rows:[{title:"预约"}, {title:"消息"}, { title:"资料"}],footer:true},{rows:[{title:"足迹"}],footer:true},{rows:[{title:"设置"},{ title:"关于"}],footer:false}],
-            icon:require("../../../images/my_user_icon.png")
+            icon:null
         };
 
     }
@@ -75,6 +75,12 @@ export default class SettingMainView extends Component{
                 this.props.navigation.navigate("bespeak");
             }else if(index == 1){
                 this.props.navigation.navigate("message");
+            }
+        }else if(group == 2){
+            if(index == 0){
+                this.props.navigation.navigate("config");
+            }else if(index == 1){
+                this.props.navigation.navigate("about");
             }
         }
 
@@ -131,6 +137,7 @@ export default class SettingMainView extends Component{
                 >
                     <Image style= { SettingStyle.UserIconImage }
                            source={ this.state.icon }
+                           defaultSource = {require("../../../images/my_user_icon.png")}
                     >
                     </Image>
                 </TouchableHighlight>

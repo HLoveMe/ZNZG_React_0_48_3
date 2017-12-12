@@ -11,6 +11,8 @@ export const SettingNavigator = Navigationer({
    bespeak:{getScreen:()=>{return require("./settings/SettingBespeakView").default}},
    message:{getScreen:()=>{return require("./settings/SettingMessageView").default}},
    userInfo:{getScreen:()=>{return require("./settings/SettingUserInfoView").default}},
+   about:{getScreen:()=>{return require("./settings/SettingAboutView").default}},
+   config:{getScreen:()=>{return require("./settings/SettingConfigView").default}},
 
 },{
    initialRouteName:"setting",
