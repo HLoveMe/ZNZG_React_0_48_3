@@ -8,5 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <React/RCTViewManager.h>
+//没必要实现这个
 @interface GHMapNodeManager : RCTViewManager
 @end

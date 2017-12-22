@@ -1,4 +1,4 @@
-//
+ //
 //  ZMapView.m
 //  ZNZG_React
 //
@@ -27,7 +27,7 @@
   }
   return self;
 }
-#pragma -mark FMKLayerDelegate
+#pragma -mark 地图节点代理 FMKLayerDelegate
 -(void)onMapClickNode:(FMKNode *)node inLayer:(FMKLayer *)layer gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer{
   if([self.mapDelegate respondsToSelector:@selector(onMapClickNode:inLayer:gestureRecognizer:)]){
     BOOL result = [((id<_FMKLayerDelegate>)self.mapDelegate) onMapClickNode:node inLayer:layer gestureRecognizer:gestureRecognizer];

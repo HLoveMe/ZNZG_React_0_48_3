@@ -12,6 +12,7 @@
     "react-native": "0.48.3",
     "react-native-fs": "^2.8.5",
     "react-native-htmlview": "^0.12.1",
+    "react-native-http-cache": "^0.2.0",
     "react-native-media-player": "^0.3.5",
     "react-native-search-box": "0.0.13",
     "react-native-slider": "^0.11.0",

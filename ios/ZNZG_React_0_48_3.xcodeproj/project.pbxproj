@@ -38,8 +38,15 @@
 		48CB449D58174CAE801B4592 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E609D8DFC7224A1FB9AD4189 /* libRNFS.a */; };
 		48EED98E439E49C9B052D758 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4CA6A7A29DC4E4D8E67322B /* libRNSound.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6B0BEACC1D5241E0A6E9D99B /* libRCTHttpCache.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E93CB53478E74C479F44CF41 /* libRCTHttpCache.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		DB1B33D51FE1068400CD84E1 /* JoysuchSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1B33D41FE1068400CD84E1 /* JoysuchSDK.framework */; };
+		DB1B33D71FE1073500CD84E1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1B33D61FE1071B00CD84E1 /* libsqlite3.tbd */; };
+		DB1B33D91FE1076400CD84E1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB1B33D81FE1075F00CD84E1 /* CoreMotion.framework */; };
+		DB1B33DC1FE107DC00CD84E1 /* JoysuchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DB1B33DB1FE107DC00CD84E1 /* JoysuchManager.m */; };
+		DB1C9D7C1FE278790080EFBD /* assets in Resources */ = {isa = PBXBuildFile; fileRef = DB1C9D7A1FE278790080EFBD /* assets */; };
+		DB1C9D7D1FE278790080EFBD /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = DB1C9D7B1FE278790080EFBD /* main.jsbundle */; };
 		DB65FE9D1FC7F41D00034276 /* FMBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DB65FE5C1FC7F41D00034276 /* FMBundle.bundle */; };
 		DB65FE9E1FC7F41D00034276 /* libFMMapKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB65FE941FC7F41D00034276 /* libFMMapKit.a */; };
 		DBAB94B71FC7FA7400577528 /* GHMapViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAB94B21FC7FA7400577528 /* GHMapViewManager.m */; };
@@ -246,6 +253,13 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		DB1B339C1FE0F4DD00CD84E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B264CE8E4042A196994F18 /* RCTHttpCache.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 915783311C33994800F5D8F8;
+			remoteInfo = RCTHttpCache;
+		};
 		DB65FE531FC7F41000034276 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -312,7 +326,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -334,6 +347,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* ZNZG_React_0_48_3-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZNZG_React_0_48_3-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ZNZG_React_0_48_3-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZNZG_React_0_48_3-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		39B264CE8E4042A196994F18 /* RCTHttpCache.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTHttpCache.xcodeproj; path = "../node_modules/react-native-http-cache/ios/RCTHttpCache.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -341,6 +355,13 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B31667A12E4F4AD2BBA74303 /* RNMediaPlayer.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMediaPlayer.xcodeproj; path = "../node_modules/react-native-media-player/ios/RNMediaPlayer.xcodeproj"; sourceTree = "<group>"; };
 		CA562E9BA94B44C08FAF5C4E /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
+		DB1B33D41FE1068400CD84E1 /* JoysuchSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JoysuchSDK.framework; sourceTree = "<group>"; };
+		DB1B33D61FE1071B00CD84E1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		DB1B33D81FE1075F00CD84E1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		DB1B33DA1FE107DC00CD84E1 /* JoysuchManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoysuchManager.h; sourceTree = "<group>"; };
+		DB1B33DB1FE107DC00CD84E1 /* JoysuchManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoysuchManager.m; sourceTree = "<group>"; };
+		DB1C9D7A1FE278790080EFBD /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ZNZG_React_0_48_3/assets; sourceTree = "<group>"; };
+		DB1C9D7B1FE278790080EFBD /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ZNZG_React_0_48_3/main.jsbundle; sourceTree = "<group>"; };
 		DB65FE5C1FC7F41D00034276 /* FMBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FMBundle.bundle; sourceTree = "<group>"; };
 		DB65FE5F1FC7F41D00034276 /* FMKSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMKSegment.h; sourceTree = "<group>"; };
 		DB65FE601FC7F41D00034276 /* FMKImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMKImageLayer.h; sourceTree = "<group>"; };
@@ -413,6 +434,7 @@
 		DBAB95211FC95B9300577528 /* GHModelNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHModelNode.m; sourceTree = "<group>"; };
 		E4CA6A7A29DC4E4D8E67322B /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		E609D8DFC7224A1FB9AD4189 /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
+		E93CB53478E74C479F44CF41 /* libRCTHttpCache.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTHttpCache.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -443,8 +465,12 @@
 				DB65FE9E1FC7F41D00034276 /* libFMMapKit.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				48EED98E439E49C9B052D758 /* libRNSound.a in Frameworks */,
+				DB1B33D51FE1068400CD84E1 /* JoysuchSDK.framework in Frameworks */,
 				48CB449D58174CAE801B4592 /* libRNFS.a in Frameworks */,
 				15C0320DD4E14F07933828CB /* libRNMediaPlayer.a in Frameworks */,
+				6B0BEACC1D5241E0A6E9D99B /* libRCTHttpCache.a in Frameworks */,
+				DB1B33D71FE1073500CD84E1 /* libsqlite3.tbd in Frameworks */,
+				DB1B33D91FE1076400CD84E1 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,9 +579,11 @@
 		13B07FAE1A68108700A75B9A /* ZNZG_React_0_48_3 */ = {
 			isa = PBXGroup;
 			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				DB1C9D7A1FE278790080EFBD /* assets */,
+				DB1C9D7B1FE278790080EFBD /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
+				DB1B33D31FE1068400CD84E1 /* joysuch */,
 				DB65FE5B1FC7F41D00034276 /* FMKit */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -620,6 +648,7 @@
 				9312C88FCCB34926A41D424A /* RNSound.xcodeproj */,
 				CA562E9BA94B44C08FAF5C4E /* RNFS.xcodeproj */,
 				B31667A12E4F4AD2BBA74303 /* RNMediaPlayer.xcodeproj */,
+				39B264CE8E4042A196994F18 /* RCTHttpCache.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -666,6 +695,25 @@
 				DBAC98FF1FC7E03B0049AB17 /* libRCTBlob-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DB1B33991FE0F4DD00CD84E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB1B339D1FE0F4DD00CD84E1 /* libRCTHttpCache.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB1B33D31FE1068400CD84E1 /* joysuch */ = {
+			isa = PBXGroup;
+			children = (
+				DB1B33D41FE1068400CD84E1 /* JoysuchSDK.framework */,
+				DB1B33DA1FE107DC00CD84E1 /* JoysuchManager.h */,
+				DB1B33DB1FE107DC00CD84E1 /* JoysuchManager.m */,
+			);
+			name = joysuch;
+			path = ZNZG_React_0_48_3/joysuch;
 			sourceTree = "<group>";
 		};
 		DB65FE5B1FC7F41D00034276 /* FMKit */ = {
@@ -750,6 +798,8 @@
 		DB65FEA21FC7F48000034276 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB1B33D81FE1075F00CD84E1 /* CoreMotion.framework */,
+				DB1B33D61FE1071B00CD84E1 /* libsqlite3.tbd */,
 				DB65FEA71FC7F4AE00034276 /* GLKit.framework */,
 				DB65FEA61FC7F49700034276 /* CoreGraphics.framework */,
 				DB65FEA51FC7F49100034276 /* OpenGLES.framework */,
@@ -782,6 +832,7 @@
 				E4CA6A7A29DC4E4D8E67322B /* libRNSound.a */,
 				E609D8DFC7224A1FB9AD4189 /* libRNFS.a */,
 				0CBA28E599174717A644E60F /* libRNMediaPlayer.a */,
+				E93CB53478E74C479F44CF41 /* libRCTHttpCache.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -945,6 +996,10 @@
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
+				},
+				{
+					ProductGroup = DB1B33991FE0F4DD00CD84E1 /* Products */;
+					ProjectRef = 39B264CE8E4042A196994F18 /* RCTHttpCache.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302BC1ABCB91800DB3ED1 /* Products */;
@@ -1184,6 +1239,13 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		DB1B339D1FE0F4DD00CD84E1 /* libRCTHttpCache.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTHttpCache.a;
+			remoteRef = DB1B339C1FE0F4DD00CD84E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		DB65FE541FC7F41000034276 /* libthird-party.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1262,6 +1324,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				DB1C9D7C1FE278790080EFBD /* assets in Resources */,
+				DB1C9D7D1FE278790080EFBD /* main.jsbundle in Resources */,
 				DB65FE9D1FC7F41D00034276 /* FMBundle.bundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -1331,6 +1395,7 @@
 				DBAB94B91FC7FA7400577528 /* GHMapView.m in Sources */,
 				DBAB95221FC95B9300577528 /* GHModelNode.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				DB1B33DC1FE107DC00CD84E1 /* JoysuchManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				DBAB95001FC95A8A00577528 /* GHMapNodeManager.m in Sources */,
 				DBAB94B81FC7FA7400577528 /* RCTConvert+FMMapKit.m in Sources */,
@@ -1396,12 +1461,14 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-media-player/ios/RNMediaPlayer",
+					"$(SRCROOT)/../node_modules/react-native-http-cache/ios/RCTHttpCache",
 				);
 				INFOPLIST_FILE = ZNZG_React_0_48_3Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1425,12 +1492,14 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-media-player/ios/RNMediaPlayer",
+					"$(SRCROOT)/../node_modules/react-native-http-cache/ios/RCTHttpCache",
 				);
 				INFOPLIST_FILE = ZNZG_React_0_48_3Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1453,11 +1522,16 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 6HC4YDL8W4;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZNZG_React_0_48_3/joysuch",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-media-player/ios/RNMediaPlayer",
+					"$(SRCROOT)/../node_modules/react-native-http-cache/ios/RCTHttpCache",
 				);
 				INFOPLIST_FILE = ZNZG_React_0_48_3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1484,11 +1558,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6HC4YDL8W4;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZNZG_React_0_48_3/joysuch",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-media-player/ios/RNMediaPlayer",
+					"$(SRCROOT)/../node_modules/react-native-http-cache/ios/RCTHttpCache",
 				);
 				INFOPLIST_FILE = ZNZG_React_0_48_3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1524,11 +1603,13 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-media-player/ios/RNMediaPlayer",
+					"$(SRCROOT)/../node_modules/react-native-http-cache/ios/RCTHttpCache",
 				);
 				INFOPLIST_FILE = "ZNZG_React_0_48_3-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1562,11 +1643,13 @@
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-media-player/ios/RNMediaPlayer",
+					"$(SRCROOT)/../node_modules/react-native-http-cache/ios/RCTHttpCache",
 				);
 				INFOPLIST_FILE = "ZNZG_React_0_48_3-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1601,6 +1684,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ZNZG_React_0_48_3-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1625,6 +1709,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

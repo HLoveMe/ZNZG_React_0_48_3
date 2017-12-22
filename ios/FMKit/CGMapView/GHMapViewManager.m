@@ -223,6 +223,20 @@ RCT_EXPORT_VIEW_PROPERTY(onMapNodeClick, RCTBubblingEventBlock);
     }
   });
 }
+
+-(void)mapView:(GHMapView *)mapView didSingleTapWithPoint:(CGPoint)point{
+    if(mapView.onMapNodeClick == nil){return;}
+    FMKMapPoint fa  =  [mapView coverPoint:point].mapPoint;
+    FMKMapInfo *info = mapView.map.info;
+    if(fa.x >= info.minX && fa.x <= info.maxX && fa.y >= info.minY && fa.y <= info.maxY){
+      NSMutableDictionary *_result = [NSMutableDictionary dictionary];
+      _result[@"FID"] = @(-1);
+      _result[@"coord"] = [RCTConvert FMKMapPointDictionary:fa];
+      _result[@"groupID"] = [mapView getFocusGroupID];
+      mapView.onMapNodeClick(_result);
+    }
+}
+
 #pragma -mark FMKLayerDelegate
 -(BOOL)onMapClickNode:(FMKNode *)node inLayer:(FMKLayer *)layer gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer{
   if([layer isKindOfClass:[FMKModelLayer class]]){

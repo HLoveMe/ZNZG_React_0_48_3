@@ -16,7 +16,7 @@
 @interface GHMapView : FMKMapView<FMKLayerDelegate>
 @property (nonatomic, copy) RCTBubblingEventBlock onFinishloading;
 @property (nonatomic, copy) RCTBubblingEventBlock onFailloading;
-@property (nonatomic, copy) RCTBubblingEventBlock onMapNodeClick;
+@property (nonatomic, copy) RCTBubblingEventBlock onMapNodeClick;  //地图节点点击和空白点击
 - (instancetype)initWithFrame:(CGRect)frame
                            ID:(NSString *)mapID
                      delegate:(id<FMKMapViewDelegate>)target

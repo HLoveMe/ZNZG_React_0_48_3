@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, View,Image ,TouchableOpacity,Text ,Animated} from 'react-native';
-import PXHandle from  "../PXHandle"
+
 import Slider from "react-native-slider";
 import Sound from 'react-native-sound';
 Sound.setCategory('Playback', true);

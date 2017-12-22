@@ -2,7 +2,7 @@
  * Created by zhuzihao on 2017/11/22.
  */
 import React, { Component } from 'react';
-import { StyleSheet, View ,Text,Image,requireNativeComponent,Keyboard,Modal,NativeModules} from 'react-native';
+import { StyleSheet, View ,Text,Image,Keyboard,Modal,NativeModules,NativeEventEmitter,Alert,Animated} from 'react-native';
 import PXHandle from "./src/Tools/PXHandle"
 import {} from "./src/Base/dataBase"
 import { buttonColor } from  "./src/Tools/commandColors"
@@ -24,6 +24,9 @@ import { ResponseResultActionManager } from "./src/Base/netWork/ResponseResultAc
 import {ZHZGReponseResultAction,ZNZGReponseMessasgeAction,ZNZGUserPowerAction} from "./src/Base/znzg_network/ZNZGReponseResult"
 import { MusicPlayView } from "./src/Tools/Views/MusicPlayView"
 import Toast from 'react-native-root-toast';
+import {RoutePlanView} from "./src/Tools/Views/RoutePlanView"
+const {JoysuchManager} = NativeModules;
+const joysuchEmitter = new NativeEventEmitter(JoysuchManager);
 const  MainStyle = StyleSheet.create({
    Main:{
        flex:1,
@@ -119,10 +122,16 @@ const  MainStyle = StyleSheet.create({
         backgroundColor:buttonColor,
         zIndex:10,
         marginTop:80,
-    }
-
-});
-const ModalStyle = StyleSheet.create({
+    },
+    RoutePlanStyle:{
+        position:"absolute",
+        width:"100%",
+        height:PXHandle.PXHeight(340),
+        backgroundColor:"rgba(220,220,220,0.7)",
+        zIndex:20,
+        paddingHorizontal:PXHandle.PXWidth(20),
+        paddingVertical:PXHandle.PXHeight(40),
+    },
 });
 function MainFuncName() {}
 MainFuncName.MapType = 0;
@@ -149,7 +158,10 @@ export default class MainViewController extends Component{
             nodeModalVisible:false,
             currentNode:null,
             /***/
-            musicPlay:false
+            musicPlay:false,
+            /**路线规划*/
+            routePlanShow:false,
+            routePlan:new Animated.Value(PXHandle.PXHeight(-340))
         };
         /**
          * 选中的节点
@@ -211,7 +223,16 @@ export default class MainViewController extends Component{
                 });
                 break
             }
-
+            case MainFuncName.RoutePlan:{
+                this.setState({
+                    routePlanShow:true
+                },()=>Animated.timing(this.state.routePlan,{
+                    toValue:0,
+                    duration:1000
+                }).start());
+                setTimeout(()=>this.refs.FMapView.selectNode(null,this.mapNode),1000);
+                break;
+            }
         }
     };
     componentDidMount(){
@@ -225,36 +246,72 @@ export default class MainViewController extends Component{
             }
         });
     }
+    //地图加载完成
     maploadFinish=()=>{
         console.log(this.refs.FMapView.getMapDisplayIds());
-        this.refs.FMapView.startLocation()
+        this.refs.FMapView.startLocation();
+        console.log(NativeModules);
+
+        //蓝牙定位
+        JoysuchManager.start();
+        joysuchEmitter.addListener("PoweredOff",()=>{
+            console.log(111);
+            Alert.alert("打开蓝牙","定位",[
+                {text: '确认', style: 'cancel'},
+            ],{cancelable:false})
+        });
+        joysuchEmitter.addListener("PoweredNoUsed",()=>{
+            console.log(222)
+            Alert.alert("蓝牙权限","",[
+                {text: '前往', onPress: () => {
+
+                }},
+                {text: '取消', style: 'cancel'},
+            ],{cancelable:false})
+        });
+        joysuchEmitter.addListener("LocationInfo",(info)=>{
+            console.log("更新位置",info);
+
+        })
     };
     //选中地图节点
     onNodeClick = (e)=>{
-        this.refs.FMapView.selectNode(e,this.mapNode);
-        this.mapNode = e;
-        let select = null;
-        if(this.nodes.length > 0){
-            for(var index in this.nodes){
-                let one = this.nodes[index];
-                if(one.fid == e.FID){
-                    select = one;
-                    break;
+        if(this.state.routePlanShow){
+            console.log(e);
+            //路线规划中
+            let FID =  parseInt(e.FID);
+            if(FID == -1){
+                //点击空白
+                console.log("空白");
+            }else{
+                //点击节点
+                console.log("节点");
+            }
+        }else{
+            this.refs.FMapView.selectNode(e,this.mapNode);
+            this.mapNode = e;
+            let select = null;
+            if(this.nodes.length > 0){
+                for(var index in this.nodes){
+                    let one = this.nodes[index];
+                    if(one.fid == e.FID){
+                        select = one;
+                        break;
+                    }
                 }
             }
+            if(select  != null){
+                ReactNative.takeSnapshot("window",{format:"png",quality:0.4}).then((bkurl)=>{
+                    this.setState({
+                        nodeModalVisible:true,
+                        bkurl,
+                        currentNode:select
+                    });
+                })
+            }else {
+                this.showMessage("没有信息");
+            }
         }
-        if(select  != null){
-            ReactNative.takeSnapshot("window",{format:"png",quality:0.4}).then((bkurl)=>{
-                this.setState({
-                    nodeModalVisible:true,
-                    bkurl,
-                    currentNode:select
-                });
-            })
-        }else {
-            this.showMessage("没有信息");
-        }
-
     };
     //输入字符
     InputSeach = (sub)=>{
@@ -422,6 +479,20 @@ export default class MainViewController extends Component{
                         </Button>
                     </View>
                 </View>
+                {/***<!--路线规划-->*/}
+                {
+                    this.state.routePlanShow ? (<RoutePlanView style = {[MainStyle.RoutePlanStyle,{bottom:this.state.routePlan}]}
+                                                               close = {()=>{
+                                                                   Animated.timing(this.state.routePlan,{
+                                                                       toValue:PXHandle.PXHeight(-340),
+                                                                       duration:1000,
+                                                                       onComplete:()=>this.setState({routePlanShow:false})
+                                                                   }).start()
+                                                               }}
+                    >
+                    </RoutePlanView>) : null
+                }
+
                 <Modal  visible = { this.state.settingModalVisible }
                        animationType = { "slide" }
                         transparent = { true }

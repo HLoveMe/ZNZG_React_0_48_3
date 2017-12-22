@@ -3,6 +3,7 @@ package com.znzg_react_0_48_3;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cn.reactnative.httpcache.HttpCachePackage;
 import com.mybigday.rnmediaplayer.RNMediaPlayerPackage;
 import com.rnfs.RNFSPackage;
 import com.zmxv.RNSound.RNSoundPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new HttpCachePackage(),
             new RNMediaPlayerPackage(),
             new RNFSPackage(),
             new RNSoundPackage()
