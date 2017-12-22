@@ -28,7 +28,7 @@ export class ResponseResultAction{
     }
     /***
      *  拦截动作   返回 新的结果
-     *  return ResponseResul
+     *  return ResponseResult
      * */
     action(ResponseResult){
         return {};
