@@ -59,7 +59,7 @@ export default class BaseContentView extends Component{
         return (
             <TouchableOpacity style={ [BaseStyle.Container,this.props.baseStyle] } id="Root"
                               activeOpacity = {1}
-                              onPress = {Keyboard.di}
+                              onPress = {Keyboard.dismiss}
             >
                 {
                     React.Children.map(this.props.children,(child)=>{

@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View ,Text,Image,Keyboard,Modal,NativeModules,NativeEventEmitter,Alert,Animated} from 'react-native';
 import PXHandle from "./src/Tools/PXHandle"
 import {} from "./src/Base/dataBase"
+import {} from "./src/Tools/DateTool"
 import { buttonColor } from  "./src/Tools/commandColors"
 import Button from 'apsl-react-native-button'
 import  {FMapView}  from "./src/Tools/Views/MapView"
@@ -25,8 +26,8 @@ import {ZHZGReponseResultAction,ZNZGReponseMessasgeAction,ZNZGUserPowerAction} f
 import { MusicPlayView } from "./src/Tools/Views/MusicPlayView"
 import Toast from 'react-native-root-toast';
 import {RoutePlanView} from "./src/Tools/Views/RoutePlanView"
-const {JoysuchManager} = NativeModules;
-const joysuchEmitter = new NativeEventEmitter(JoysuchManager);
+// const {JoysuchManager} = NativeModules;
+// const joysuchEmitter = new NativeEventEmitter(JoysuchManager);
 const  MainStyle = StyleSheet.create({
    Main:{
        flex:1,
@@ -253,26 +254,26 @@ export default class MainViewController extends Component{
         console.log(NativeModules);
 
         //蓝牙定位
-        JoysuchManager.start();
-        joysuchEmitter.addListener("PoweredOff",()=>{
-            console.log(111);
-            Alert.alert("打开蓝牙","定位",[
-                {text: '确认', style: 'cancel'},
-            ],{cancelable:false})
-        });
-        joysuchEmitter.addListener("PoweredNoUsed",()=>{
-            console.log(222)
-            Alert.alert("蓝牙权限","",[
-                {text: '前往', onPress: () => {
-
-                }},
-                {text: '取消', style: 'cancel'},
-            ],{cancelable:false})
-        });
-        joysuchEmitter.addListener("LocationInfo",(info)=>{
-            console.log("更新位置",info);
-
-        })
+        // JoysuchManager.start();
+        // joysuchEmitter.addListener("PoweredOff",()=>{
+        //     console.log(111);
+        //     Alert.alert("打开蓝牙","定位",[
+        //         {text: '确认', style: 'cancel'},
+        //     ],{cancelable:false})
+        // });
+        // joysuchEmitter.addListener("PoweredNoUsed",()=>{
+        //     console.log(222)
+        //     Alert.alert("蓝牙权限","",[
+        //         {text: '前往', onPress: () => {
+        //
+        //         }},
+        //         {text: '取消', style: 'cancel'},
+        //     ],{cancelable:false})
+        // });
+        // joysuchEmitter.addListener("LocationInfo",(info)=>{
+        //     console.log("更新位置",info);
+        //
+        // })
     };
     //选中地图节点
     onNodeClick = (e)=>{

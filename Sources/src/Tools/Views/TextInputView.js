@@ -39,7 +39,7 @@ const  InputViewStyle = StyleSheet.create({
 export default class TextInputView extends Component{
     constructor(ops){
         super(ops);
-        this.time = 9;
+        this.time = 59;
         this.state = {
             title:"获取验证码",
             isDisabled:false

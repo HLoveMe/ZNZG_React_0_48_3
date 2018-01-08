@@ -32,7 +32,7 @@ export class NodeBespeakUpdateModel{
 export class BespeakType{
     static Content = 0; //文本输入
     static Time = 1;  //时间
-    static Number = 2; //数组
+    static Number = 2; //数子
     static Code = 3; //验证码
 }
 /***
